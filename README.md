@@ -17,6 +17,14 @@ To run the Penguin web service:
 6. `node server`
 7. Visit [http://localhost:8081/queues](http://localhost:8081/queues)
 
+Command Line Options
+--------------------
+
+The following command line options are supported:
+
+	-h, --help  Shows this help
+	-p, --port  Sets the server port  [default: 8081]
+
 Hosted Instance
 ---------------
 
