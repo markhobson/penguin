@@ -12,7 +12,7 @@ define(["optimist", "app"], function(optimist, app) {
 		.options("p", {
 			alias: "port",
 			describe: "Sets the server port",
-			"default": process.env.PORT || 8080
+			"default": process.env.PORT || 8081
 		});
 	
 	if (opts.argv.help) {
