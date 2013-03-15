@@ -3,15 +3,15 @@
  */
 define(["app", "resource/story"], function(app, story) {
 	
-	app.post("/api/queue/:queueId/stories", story.create);
+	app.post("/queue/:queueId/stories", story.create);
 	
-	app.get("/api/queue/:queueId/story/:id", story.get);
+	app.get("/queue/:queueId/story/:id", story.get);
 	
-	app.put("/api/queue/:queueId/story/:id", story.update);
+	app.put("/queue/:queueId/story/:id", story.update);
 	
-	app.del("/api/queue/:queueId/story/:id", story.del);
+	app.del("/queue/:queueId/story/:id", story.del);
 	
-	app.post("/api/queue/:queueId/story/:id/merge", story.merge);
+	app.post("/queue/:queueId/story/:id/merge", story.merge);
 	
-	app.post("/api/queue/:queueId/story/:id/unmerge", story.unmerge);
+	app.post("/queue/:queueId/story/:id/unmerge", story.unmerge);
 });

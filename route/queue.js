@@ -3,13 +3,13 @@
  */
 define(["app", "resource/queue"], function(app, queue) {
 	
-	app.get("/api/queues", queue.list);
+	app.get("/queues", queue.list);
 	
-	app.post("/api/queues", queue.create);
+	app.post("/queues", queue.create);
 	
-	app.get("/api/queue/:id", queue.get);
+	app.get("/queue/:id", queue.get);
 	
-	app.put("/api/queue/:id", queue.update);
+	app.put("/queue/:id", queue.update);
 	
-	app.del("/api/queue/:id", queue.del);
+	app.del("/queue/:id", queue.del);
 });
