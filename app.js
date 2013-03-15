@@ -1,7 +1,7 @@
 /*
  * Penguin application.
  */
-define(["express", "path"], function(express, path) {
+define(["express"], function(express) {
 	
 	var app = express();
 
@@ -13,7 +13,6 @@ define(["express", "path"], function(express, path) {
 		app.use(express.bodyParser());
 		app.use(express.methodOverride());
 		app.use(app.router);
-		app.use(express.static(path.join(this.__dirname, "public")));
 	});
 
 	// configure development profile
