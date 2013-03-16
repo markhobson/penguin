@@ -18,7 +18,6 @@ var opts = optimist
 exports.config = function() {
 
 	if (opts.argv.help) {
-		opts.showHelp();
 		return;
 	}
 
@@ -26,4 +25,8 @@ exports.config = function() {
 		port: opts.argv.port
 	};
 	
+};
+
+exports.showHelp = function() {
+	opts.showHelp();
 };
