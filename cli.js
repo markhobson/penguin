@@ -4,7 +4,7 @@
 var optimist = require("optimist");
 
 var opts = optimist
-	.usage("Starts the Penguin server.")
+	.usage("Starts the Penguin web service.")
 	.options("h", {
 		alias: "help",
 		describe: "Shows this help"
