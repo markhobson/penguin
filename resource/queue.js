@@ -4,6 +4,7 @@
 var data = require("../data");
 
 exports.list = function(request, response) {
+	
 	data.findQueues(function(queues) {
 		response.send(queues);
 	});
