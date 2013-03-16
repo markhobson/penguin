@@ -37,5 +37,3 @@ Architecture
 The server is an [Express](http://expressjs.com/) web application running on [Node.js](http://nodejs.org/).  It provides
 a RESTful interface to a [MongoDB](http://www.mongodb.org/) data persistence layer via the
 [MongoDB Node.js driver](http://mongodb.github.com/node-mongodb-native/).
-
-[RequireJS](http://requirejs.org/) is used as the JavaScript module loader.
