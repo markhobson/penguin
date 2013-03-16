@@ -1,7 +1,9 @@
 /*
  * Configures the router for queues.
  */
-define(["app", "resource/queue"], function(app, queue) {
+var queue = require("../resource/queue");
+
+exports.configure = function(app) {
 	
 	app.get("/queues", queue.list);
 	
@@ -12,4 +14,4 @@ define(["app", "resource/queue"], function(app, queue) {
 	app.put("/queue/:id", queue.update);
 	
 	app.del("/queue/:id", queue.del);
-});
+};

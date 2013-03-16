@@ -1,21 +1,19 @@
 /*
  * Penguin server.
  */
-var requirejs = require("requirejs");
+var cli = require("./cli");
+var App = require("./app");
 
-requirejs.config({
-	nodeRequire: require
-});
+var config = cli.config();
 
-requirejs(["app", "cli", "route/index"], function(app) {
+if (config != null) {
 	
 	// start server
 	
-	var port = app.get("port");
-
-	if (port) {
-		app.listen(port, function() {
-			console.log("Server listening on port " + port);
+	if (config.port) {
+		var app = App.create();
+		app.listen(config.port, function() {
+			console.log("Server listening on port " + config.port);
 		});
 	}
-});
+}

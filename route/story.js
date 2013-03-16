@@ -1,7 +1,9 @@
 /*
  * Configures the router for stories.
  */
-define(["app", "resource/story"], function(app, story) {
+var story = require("../resource/story");
+
+exports.configure = function(app) {
 	
 	app.post("/queue/:queueId/stories", story.create);
 	
@@ -14,4 +16,4 @@ define(["app", "resource/story"], function(app, story) {
 	app.post("/queue/:queueId/story/:id/merge", story.merge);
 	
 	app.post("/queue/:queueId/story/:id/unmerge", story.unmerge);
-});
+};

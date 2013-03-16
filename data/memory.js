@@ -1,70 +1,63 @@
 /*
  * In-memory data layer.
  */
-define(function() {
-	
-	var queues = [];
-	var id = 1;
+var queues = [];
+var id = 1;
 
-	return {
-		
-		findQueues: function(callback) {
-			callback(queues);
-		},
+exports.findQueues = function(callback) {
+	callback(queues);
+};
 
-		findQueue: function(id, callback) {
-			callback(queues[id - 1]);
-		},
+exports.findQueue = function(id, callback) {
+	callback(queues[id - 1]);
+};
 
-		createQueue: function(queue, callback) {
-			queue._id = id++;
-			// TODO: insert queue into array ordered by name
-			queues.push(queue);
-			callback(queue);
-		},
+exports.createQueue = function(queue, callback) {
+	queue._id = id++;
+	// TODO: insert queue into array ordered by name
+	queues.push(queue);
+	callback(queue);
+};
 		
-		updateQueue: function(queue, callback) {
-			queues[queue._id - 1] = queue;
-			callback(true);
-		},
+exports.updateQueue = function(queue, callback) {
+	queues[queue._id - 1] = queue;
+	callback(true);
+};
 		
-		deleteQueue: function(id, callback) {
-			// TODO: remove queue from array
-			callback(true);
-		},
+exports.deleteQueue = function(id, callback) {
+	// TODO: remove queue from array
+	callback(true);
+};
 
-		findStory: function(queueId, id, callback) {
-			// TODO: implement
-			callback(null);
-		},
+exports.findStory = function(queueId, id, callback) {
+	// TODO: implement
+	callback(null);
+};
 		
-		createStory: function(queueId, story, callback) {
-			// TODO: set story._id
-			this.findQueue(queueId, function(queue) {
-				queue.stories.push(story);
-				callback(story);
-			});
-		},
+exports.createStory = function(queueId, story, callback) {
+	// TODO: set story._id
+	this.findQueue(queueId, function(queue) {
+		queue.stories.push(story);
+		callback(story);
+	});
+};
 		
-		updateStory: function(queueId, story, callback) {
-			// TODO: implement
-			callback(false);
-		},
+exports.updateStory = function(queueId, story, callback) {
+	// TODO: implement
+	callback(false);
+};
 		
-		deleteStory: function(queueId, id, callback) {
-			// TODO: implement
-			callback(false);
-		},
+exports.deleteStory = function(queueId, id, callback) {
+	// TODO: implement
+	callback(false);
+};
 		
-		mergeStory: function(queueId, id, callback) {
-			// TODO: implement
-			callback(false);
-		},
+exports.mergeStory = function(queueId, id, callback) {
+	// TODO: implement
+	callback(false);
+};
 		
-		unmergeStory: function(queueId, id, callback) {
-			// TODO: implement
-			callback(false);
-		}
-
-	};
-});
+exports.unmergeStory = function(queueId, id, callback) {
+	// TODO: implement
+	callback(false);
+};

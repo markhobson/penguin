@@ -1,7 +1,9 @@
 /*
  * Processes command-line arguments.
  */
-define(["optimist", "app"], function(optimist, app) {
+var optimist = require("optimist");
+
+exports.config = function() {
 
 	var opts = optimist
 		.usage("Starts the Penguin server.")
@@ -19,7 +21,9 @@ define(["optimist", "app"], function(optimist, app) {
 		opts.showHelp();
 		return;
 	}
+
+	return {
+		port: opts.argv.port
+	};
 	
-	app.set("port", opts.argv.port);
-	
-});
+};

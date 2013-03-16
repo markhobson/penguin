@@ -1,7 +1,10 @@
 /*
  * Penguin application.
  */
-define(["express"], function(express) {
+var express = require("express");
+var routes = require("./route");
+
+exports.create = function() {
 	
 	var app = express();
 
@@ -14,6 +17,8 @@ define(["express"], function(express) {
 		app.use(express.methodOverride());
 		app.use(app.router);
 	});
+	
+	routes.configure(app);
 
 	// configure development profile
 
@@ -22,4 +27,4 @@ define(["express"], function(express) {
 	});
 
 	return app;
-});
+};
