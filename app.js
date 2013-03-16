@@ -6,24 +6,19 @@ var routes = require("./route");
 
 exports.create = function() {
 	
-	var app = express();
-
-	// configure application
-
-	app.configure(function() {
-		app.use(express.favicon());
-		app.use(express.logger("dev"));
-		app.use(express.bodyParser());
-		app.use(express.methodOverride());
-	});
+	var app = express()
+		.use(express.favicon())
+		.use(express.logger("dev"))
+		.use(express.bodyParser())
+		.use(express.methodOverride());
 	
 	routes.configure(app);
 
 	// configure development profile
 
-	app.configure("development", function() {
+	if (app.get("env") == "development") {
 		app.use(express.errorHandler());
-	});
+	}
 
 	return app;
 };
