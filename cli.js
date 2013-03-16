@@ -24,7 +24,6 @@ exports.config = function() {
 	return {
 		port: opts.argv.port
 	};
-	
 };
 
 exports.showHelp = function() {
