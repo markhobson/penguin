@@ -1,26 +1,17 @@
 /*
- * Web service Express application.
+ * Web service Restify application.
  */
-var express = require("express");
+var restify = require("restify");
 var routes = require("./route");
 
 exports.create = function() {
 	
-	var app = express()
-		.use(express.favicon())
-		.use(express.logger("dev"))
-		.use(express.bodyParser())
-		.use(express.methodOverride());
+	var app = restify.createServer()
+		.use(restify.bodyParser({mapParams: false}));
 	
 	// configure router
 	
 	routes.configure(app);
-
-	// configure development profile
-
-	if (app.get("env") == "development") {
-		app.use(express.errorHandler());
-	}
 
 	return app;
 };
