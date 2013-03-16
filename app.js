@@ -12,6 +12,8 @@ exports.create = function() {
 		.use(express.bodyParser())
 		.use(express.methodOverride());
 	
+	// configure router
+	
 	routes.configure(app);
 
 	// configure development profile
