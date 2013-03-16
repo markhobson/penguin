@@ -1,5 +1,5 @@
 /*
- * Penguin application.
+ * Web service Express application.
  */
 var express = require("express");
 var routes = require("./route");

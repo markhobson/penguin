@@ -1,5 +1,5 @@
 /*
- * Penguin server.
+ * Penguin web service.
  */
 var cli = require("./cli");
 var app = require("./app");
