@@ -14,7 +14,7 @@ To run the Penguin web service:
 3. `git clone git://github.com/markhobson/penguin.git`
 4. `cd penguin`
 5. `npm install`
-6. `node server`
+6. `npm start`
 7. Visit [http://localhost:8081/queues](http://localhost:8081/queues)
 
 Command Line Options

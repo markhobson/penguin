@@ -3,6 +3,9 @@
 	"version": "0.1.0",
 	"description": "A virtual penguin queue",
 	"private": true,
+	"scripts": {
+		"start": "node main/server"
+	},
 	"dependencies": {
 		"optimist": "0.3.5",
 		"restify": "2.3.4",
