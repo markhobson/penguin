@@ -1,9 +1,11 @@
 /*
  * Configures the router for stories.
  */
-var story = require("../resource/story");
+var Story = require("../resource/story");
 
-exports.configure = function(app) {
+exports.configure = function(app, data) {
+	
+	var story = new Story(data);
 	
 	app.post("/queue/:queueId/stories", story.create);
 	
