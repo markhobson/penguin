@@ -3,7 +3,6 @@
  */
 var cli = require("./cli");
 var app = require("./app");
-var data = require("./data/mongodb");
 
 var config = cli.config();
 
@@ -13,7 +12,9 @@ if (config == null) {
 }
 else {
 	
-	app.create(data)
+	console.log("Using data layer " + config.data.url());
+	
+	app.create(config.data)
 		.listen(config.port, function() {
 			console.log("Server listening on port " + config.port);
 		});

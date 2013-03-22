@@ -4,6 +4,10 @@
 var queues = [];
 var id = 1;
 
+exports.url = function() {
+	return "memory";
+};
+
 exports.findQueues = function(callback) {
 	callback(queues);
 };

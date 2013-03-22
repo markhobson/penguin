@@ -23,7 +23,8 @@ Command Line Options
 The following command line options are supported:
 
 	-h, --help  Shows this help
-	-p, --port  Sets the server port  [default: 8081]
+	-d, --data  Sets the data layer (memory|mongodb)  [default: "mongodb"]
+	-p, --port  Sets the server port                  [default: 8081]
 
 Hosted Instance
 ---------------

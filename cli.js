@@ -9,6 +9,11 @@ var opts = optimist
 		alias: "help",
 		describe: "Shows this help"
 	})
+	.options("d", {
+		alias: "data",
+		describe: "Sets the data layer (memory|mongodb)",
+		"default": "mongodb"
+	})
 	.options("p", {
 		alias: "port",
 		describe: "Sets the server port",
@@ -22,6 +27,7 @@ exports.config = function() {
 	}
 
 	return {
+		data: require("./data/" + opts.argv.data),
 		port: opts.argv.port
 	};
 };
