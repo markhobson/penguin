@@ -3,10 +3,11 @@
  */
 module.exports = function(data) {
 	
-	this.list = function(request, response) {
+	this.list = function(request, response, done) {
 		
 		data.findQueues(function(queues) {
 			response.send(queues);
+			done && done();
 		});
 	};
 

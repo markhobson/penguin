@@ -26,6 +26,13 @@ The following command line options are supported:
 	-d, --data  Sets the data layer (memory|mongodb)  [default: "mongodb"]
 	-p, --port  Sets the server port                  [default: 8081]
 
+Running Tests
+-------------
+
+To run the unit tests:
+
+	npm test
+
 Hosted Instance
 ---------------
 
@@ -38,3 +45,5 @@ Architecture
 The server is a [Restify](http://mcavage.github.com/node-restify/) application running on [Node.js](http://nodejs.org/).
 It provides a RESTful interface to a [MongoDB](http://www.mongodb.org/) data persistence layer via the
 [MongoDB Node.js driver](http://mongodb.github.com/node-mongodb-native/).
+
+Unit tests use [Mocha](http://visionmedia.github.com/mocha/) with [Sinon.JS](http://sinonjs.org/) for mocking.
