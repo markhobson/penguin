@@ -3,7 +3,7 @@
  */
 var cli = require("./cli");
 var app = require("./app");
-var data = require("./data");
+var data = require("./data/mongodb");
 
 var config = cli.config();
 
