@@ -18,7 +18,7 @@ suite("Queue", function() {
 	
 	suite("#list()", function() {
 		
-		test("sends queues to response", function(done) {
+		test("sends queues", function(done) {
 			
 			data.findQueues = sinon.stub().callsArgWith(0, [{_id: 1, name: "A", stories: []}]);
 			
@@ -32,7 +32,7 @@ suite("Queue", function() {
 	
 	suite("#get()", function() {
 		
-		test("sends queue to response", function(done) {
+		test("sends queue when found", function(done) {
 			
 			data.findQueue = sinon.stub();
 			data.findQueue.withArgs(1).callsArgWith(1, {_id: 1, name: "A", stories: []});
@@ -44,7 +44,7 @@ suite("Queue", function() {
 			});
 		});
 		
-		test("sends 404 to response when not found", function(done) {
+		test("sends 404 when not found", function(done) {
 			
 			data.findQueue = sinon.stub();
 			data.findQueue.withArgs(1).callsArgWith(1, null);
@@ -60,7 +60,7 @@ suite("Queue", function() {
 	
 	suite("#create()", function() {
 		
-		test("creates queue from request", function(done) {
+		test("creates queue", function(done) {
 			
 			data.createQueue = sinon.stub();
 			data.createQueue.withArgs({name: "A", stories: []}).callsArgWith(1, {_id: 1, name: "A", stories: []});
