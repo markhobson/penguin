@@ -118,4 +118,44 @@ suite("Story", function() {
 		
 	});
 	
+	suite("#del()", function() {
+		
+		test("deletes story when found", function(done) {
+			
+			data.deleteStory = sinon.stub();
+			data.deleteStory.withArgs(1, 2).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			
+			story.del(request, response, function() {
+				sinon.assert.calledOnce(data.deleteStory);
+				done();
+			});
+		});
+		
+		test("sends 204 when deleted", function(done) {
+			
+			data.deleteStory = sinon.stub();
+			data.deleteStory.withArgs(1, 2).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			
+			story.del(request, response, function() {
+				sinon.assert.calledWith(response.send, 204);
+				done();
+			});
+		});
+		
+		test("sends 404 when not found", function(done) {
+			
+			data.deleteStory = sinon.stub();
+			data.deleteStory.withArgs(1, 2).callsArgWith(2, false);
+			request.params = {queueId: 1, id: 2};
+			
+			story.del(request, response, function() {
+				sinon.assert.calledWith(response.send, 404);
+				done();
+			});
+		});
+		
+	});
+	
 });

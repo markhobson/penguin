@@ -48,13 +48,14 @@ module.exports = function(data) {
 		});
 	};
 			
-	this.del = function(request, response) {
+	this.del = function(request, response, done) {
 				
 		var queueId = request.params.queueId;
 		var id = request.params.id;
 		
 		data.deleteStory(queueId, id, function(success) {
 			response.send(success ? 204 : 404);
+			done && done();
 		});
 	};
 			
