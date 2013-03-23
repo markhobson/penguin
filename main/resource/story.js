@@ -3,13 +3,14 @@
  */
 module.exports = function(data) {
 	
-	this.get = function(request, response) {
+	this.get = function(request, response, done) {
 		
 		var queueId = request.params.queueId;
 		var id = request.params.id;
 		
 		data.findStory(queueId, id, function(story) {
 			response.send(story || 404);
+			done && done();
 		});
 	};
 
