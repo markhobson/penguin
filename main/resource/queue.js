@@ -11,12 +11,13 @@ module.exports = function(data) {
 		});
 	};
 
-	this.get = function(request, response) {
+	this.get = function(request, response, done) {
 		
 		var id = request.params.id;
 		
 		data.findQueue(id, function(queue) {
 			response.send(queue || 404);
+			done && done();
 		});
 	};
 

@@ -27,4 +27,34 @@ suite("Queue", function() {
 		
 	});
 	
+	suite("#get()", function() {
+		
+		test("sends queue to response", function(done) {
+			
+			this.data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, {_id: 1, name: "A", stories: []});
+			this.request.params = {id: 1};
+			this.response.send = sinon.spy();
+			var self = this;
+			
+			this.queue.get(this.request, this.response, function() {
+				sinon.assert.calledWith(self.response.send, {_id: 1, name: "A", stories: []});
+				done();
+			});
+		});
+		
+		test("sends 404 to response when not found", function(done) {
+			
+			this.data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, null);
+			this.request.params = {id: 1};
+			this.response.send = sinon.spy();
+			var self = this;
+			
+			this.queue.get(this.request, this.response, function() {
+				sinon.assert.calledWith(self.response.send, 404);
+				done();
+			});
+		});
+		
+	});
+	
 });
