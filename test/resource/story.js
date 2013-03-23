@@ -158,4 +158,44 @@ suite("Story", function() {
 		
 	});
 	
+	suite("#merge()", function() {
+		
+		test("merges story when found", function(done) {
+			
+			data.mergeStory = sinon.stub();
+			data.mergeStory.withArgs(1, 2).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			
+			story.merge(request, response, function() {
+				sinon.assert.calledOnce(data.mergeStory);
+				done();
+			});
+		});
+		
+		test("sends 204 when merged", function(done) {
+			
+			data.mergeStory = sinon.stub();
+			data.mergeStory.withArgs(1, 2).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			
+			story.merge(request, response, function() {
+				sinon.assert.calledWith(response.send, 204);
+				done();
+			});
+		});
+		
+		test("sends 404 when not found", function(done) {
+			
+			data.mergeStory = sinon.stub();
+			data.mergeStory.withArgs(1, 2).callsArgWith(2, false);
+			request.params = {queueId: 1, id: 2};
+			
+			story.merge(request, response, function() {
+				sinon.assert.calledWith(response.send, 404);
+				done();
+			});
+		});
+		
+	});
+	
 });

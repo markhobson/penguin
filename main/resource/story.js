@@ -59,13 +59,14 @@ module.exports = function(data) {
 		});
 	};
 			
-	this.merge = function(request, response) {
+	this.merge = function(request, response, done) {
 				
 		var queueId = request.params.queueId;
 		var id = request.params.id;
 		
 		data.mergeStory(queueId, id, function(success) {
 			response.send(success ? 204 : 404);
+			done && done();
 		});
 	};
 			
