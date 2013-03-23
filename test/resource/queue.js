@@ -129,4 +129,44 @@ suite("Queue", function() {
 		
 	});
 	
+	suite("#del()", function() {
+		
+		test("deletes queue when found", function(done) {
+			
+			data.deleteQueue = sinon.stub();
+			data.deleteQueue.withArgs(1).callsArgWith(1, true);
+			request.params = {id: 1};
+			
+			queue.del(request, response, function() {
+				sinon.assert.calledWith(data.deleteQueue, 1);
+				done();
+			});
+		});
+		
+		test("sends 204 when deleted", function(done) {
+			
+			data.deleteQueue = sinon.stub();
+			data.deleteQueue.withArgs(1).callsArgWith(1, true);
+			request.params = {id: 1};
+			
+			queue.del(request, response, function() {
+				sinon.assert.calledWith(response.send, 204);
+				done();
+			});
+		});
+		
+		test("sends 404 when not found", function(done) {
+			
+			data.deleteQueue = sinon.stub();
+			data.deleteQueue.withArgs(1).callsArgWith(1, false);
+			request.params = {id: 1};
+			
+			queue.del(request, response, function() {
+				sinon.assert.calledWith(response.send, 404);
+				done();
+			});
+		});
+		
+	});
+	
 });
