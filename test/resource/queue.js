@@ -6,11 +6,13 @@ suite("Queue", function() {
 	
 	var data;
 	var queue;
+	var request;
 	var response;
 	
 	setup(function() {
 		data = {};
 		queue = new Queue(data);
+		request = {};
 		response = {send: sinon.spy()};
 	});
 	
@@ -20,7 +22,7 @@ suite("Queue", function() {
 			
 			data.findQueues = sinon.stub().callsArgWith(0, [{_id: "1", name: "A", stories: []}]);
 			
-			queue.list({}, response, function() {
+			queue.list(request, response, function() {
 				sinon.assert.calledWith(response.send, [{_id: "1", name: "A", stories: []}]);
 				done();
 			});
@@ -33,8 +35,9 @@ suite("Queue", function() {
 		test("sends queue to response", function(done) {
 			
 			data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, {_id: 1, name: "A", stories: []});
+			request.params = {id: 1};
 			
-			queue.get({params: {id: 1}}, response, function() {
+			queue.get(request, response, function() {
 				sinon.assert.calledWith(response.send, {_id: 1, name: "A", stories: []});
 				done();
 			});
@@ -43,8 +46,9 @@ suite("Queue", function() {
 		test("sends 404 to response when not found", function(done) {
 			
 			data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, null);
+			request.params = {id: 1};
 			
-			queue.get({params: {id: 1}}, response, function() {
+			queue.get(request, response, function() {
 				sinon.assert.calledWith(response.send, 404);
 				done();
 			});
