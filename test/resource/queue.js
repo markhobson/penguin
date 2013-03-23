@@ -34,7 +34,8 @@ suite("Queue", function() {
 		
 		test("sends queue to response", function(done) {
 			
-			data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, {_id: 1, name: "A", stories: []});
+			data.findQueue = sinon.stub();
+			data.findQueue.withArgs(1).callsArgWith(1, {_id: 1, name: "A", stories: []});
 			request.params = {id: 1};
 			
 			queue.get(request, response, function() {
@@ -45,7 +46,8 @@ suite("Queue", function() {
 		
 		test("sends 404 to response when not found", function(done) {
 			
-			data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, null);
+			data.findQueue = sinon.stub();
+			data.findQueue.withArgs(1).callsArgWith(1, null);
 			request.params = {id: 1};
 			
 			queue.get(request, response, function() {
