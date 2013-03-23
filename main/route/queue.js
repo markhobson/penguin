@@ -1,12 +1,8 @@
 /*
  * Configures the router for queues.
  */
-var Queue = require("../resource/queue");
+exports.configure = function(app, queue) {
 
-exports.configure = function(app, data) {
-
-	var queue = new Queue(data);
-	
 	app.get("/queues", queue.list);
 	
 	app.post("/queues", queue.create);
