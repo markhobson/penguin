@@ -4,21 +4,24 @@ var Queue = require("./../../main/resource/queue");
 
 suite("Queue", function() {
 	
+	var data;
+	var queue;
+	var response;
+	
 	setup(function() {
-		this.data = {};
-		this.queue = new Queue(this.data);
-		this.response = {send: sinon.spy()};
+		data = {};
+		queue = new Queue(data);
+		response = {send: sinon.spy()};
 	});
 	
 	suite("#list()", function() {
 		
 		test("sends queues to response", function(done) {
 			
-			this.data.findQueues = sinon.stub().callsArgWith(0, [{_id: "1", name: "A", stories: []}]);
-			var self = this;
+			data.findQueues = sinon.stub().callsArgWith(0, [{_id: "1", name: "A", stories: []}]);
 			
-			this.queue.list({}, this.response, function() {
-				sinon.assert.calledWith(self.response.send, [{_id: "1", name: "A", stories: []}]);
+			queue.list({}, response, function() {
+				sinon.assert.calledWith(response.send, [{_id: "1", name: "A", stories: []}]);
 				done();
 			});
 		});
@@ -29,22 +32,20 @@ suite("Queue", function() {
 		
 		test("sends queue to response", function(done) {
 			
-			this.data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, {_id: 1, name: "A", stories: []});
-			var self = this;
+			data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, {_id: 1, name: "A", stories: []});
 			
-			this.queue.get({params: {id: 1}}, this.response, function() {
-				sinon.assert.calledWith(self.response.send, {_id: 1, name: "A", stories: []});
+			queue.get({params: {id: 1}}, response, function() {
+				sinon.assert.calledWith(response.send, {_id: 1, name: "A", stories: []});
 				done();
 			});
 		});
 		
 		test("sends 404 to response when not found", function(done) {
 			
-			this.data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, null);
-			var self = this;
+			data.findQueue = sinon.stub().withArgs(1).callsArgWith(1, null);
 			
-			this.queue.get({params: {id: 1}}, this.response, function() {
-				sinon.assert.calledWith(self.response.send, 404);
+			queue.get({params: {id: 1}}, response, function() {
+				sinon.assert.calledWith(response.send, 404);
 				done();
 			});
 		});
