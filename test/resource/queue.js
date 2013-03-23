@@ -86,4 +86,47 @@ suite("Queue", function() {
 		
 	});
 	
+	suite("#update()", function() {
+		
+		test("updates queue when found", function(done) {
+			
+			data.updateQueue = sinon.stub();
+			data.updateQueue.withArgs({_id: 1, name: "B"}).callsArgWith(1, true);
+			request.params = {id: 1};
+			request.body = {name: "B"};
+
+			queue.update(request, response, function() {
+				sinon.assert.calledWith(data.updateQueue, {_id: 1, name: "B"});
+				done();
+			});
+		});
+		
+		test("sends 204 when updated", function(done) {
+			
+			data.updateQueue = sinon.stub();
+			data.updateQueue.withArgs({_id: 1, name: "B"}).callsArgWith(1, true);
+			request.params = {id: 1};
+			request.body = {name: "B"};
+			
+			queue.update(request, response, function() {
+				sinon.assert.calledWith(response.send, 204);
+				done();
+			});
+		});
+		
+		test("sends 404 when not found", function(done) {
+			
+			data.updateQueue = sinon.stub();
+			data.updateQueue.withArgs({_id: 1, name: "B"}).callsArgWith(1, false);
+			request.params = {id: 1};
+			request.body = {name: "B"};
+			
+			queue.update(request, response, function() {
+				sinon.assert.calledWith(response.send, 404);
+				done();
+			});
+		});
+		
+	});
+	
 });

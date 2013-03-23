@@ -34,7 +34,7 @@ module.exports = function(data) {
 		});
 	};
 			
-	this.update = function(request, response) {
+	this.update = function(request, response, done) {
 				
 		var queue = {
 			_id: request.params.id,
@@ -43,6 +43,7 @@ module.exports = function(data) {
 		
 		data.updateQueue(queue, function(success) {
 			response.send(success ? 204 : 404);
+			done && done();
 		});
 	};
 
