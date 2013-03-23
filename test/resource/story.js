@@ -43,4 +43,36 @@ suite("Story", function() {
 		
 	});
 	
+	suite("#create()", function() {
+		
+		test("creates story", function(done) {
+			
+			data.createStory = sinon.stub();
+			data.createStory.withArgs(1, {reference: "A", title: "B", author: "C", merged: false})
+				.callsArgWith(2, {_id: 2, reference: "A", title: "B", author: "C", merged: false});
+			request.params = {queueId: 1};
+			request.body = {reference: "A", title: "B", author: "C"};
+			
+			story.create(request, response, function() {
+				sinon.assert.calledWith(data.createStory, 1, {reference: "A", title: "B", author: "C", merged: false});
+				done();
+			});
+		});
+		
+		test("sends 201 and id when created", function(done) {
+			
+			data.createStory = sinon.stub();
+			data.createStory.withArgs(1, {reference: "A", title: "B", author: "C", merged: false})
+				.callsArgWith(2, {_id: 2, reference: "A", title: "B", author: "C", merged: false});
+			request.params = {queueId: 1};
+			request.body = {reference: "A", title: "B", author: "C"};
+			
+			story.create(request, response, function() {
+				sinon.assert.calledWith(response.send, 201, {_id: 2});
+				done();
+			});
+		});
+		
+	});
+	
 });

@@ -14,7 +14,7 @@ module.exports = function(data) {
 		});
 	};
 
-	this.create = function(request, response) {
+	this.create = function(request, response, done) {
 				
 		var queueId = request.params.queueId;
 
@@ -27,6 +27,7 @@ module.exports = function(data) {
 		
 		data.createStory(queueId, story, function(story) {
 			response.send(201, {_id: story._id});
+			done && done();
 		});
 	};
 			
