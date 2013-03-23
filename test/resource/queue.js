@@ -1,4 +1,3 @@
-var assert = require("assert");
 var sinon = require("sinon");
 var Queue = require("./../../main/resource/queue");
 
