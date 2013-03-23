@@ -31,7 +31,7 @@ module.exports = function(data) {
 		});
 	};
 			
-	this.update = function(request, response) {
+	this.update = function(request, response, done) {
 				
 		var queueId = request.params.queueId;
 		
@@ -44,6 +44,7 @@ module.exports = function(data) {
 		
 		data.updateStory(queueId, story, function(success) {
 			response.send(success ? 204 : 404);
+			done && done();
 		});
 	};
 			

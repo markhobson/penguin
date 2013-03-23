@@ -75,4 +75,47 @@ suite("Story", function() {
 		
 	});
 	
+	suite("#update()", function() {
+		
+		test("updates story", function(done) {
+			
+			data.updateStory = sinon.stub();
+			data.updateStory.withArgs(1, {_id: 2, reference: "A", title: "B", author: "C"}).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			request.body = {reference: "A", title: "B", author: "C"};
+			
+			story.update(request, response, function() {
+				sinon.assert.calledOnce(data.updateStory);
+				done();
+			});
+		});
+		
+		test("sends 204 when updated", function(done) {
+			
+			data.updateStory = sinon.stub();
+			data.updateStory.withArgs(1, {_id: 2, reference: "A", title: "B", author: "C"}).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			request.body = {reference: "A", title: "B", author: "C"};
+			
+			story.update(request, response, function() {
+				sinon.assert.calledWith(response.send, 204);
+				done();
+			});
+		});
+		
+		test("sends 404 when not found", function(done) {
+			
+			data.updateStory = sinon.stub();
+			data.updateStory.withArgs(1, {_id: 2, reference: "A", title: "B", author: "C"}).callsArgWith(2, false);
+			request.params = {queueId: 1, id: 2};
+			request.body = {reference: "A", title: "B", author: "C"};
+			
+			story.update(request, response, function() {
+				sinon.assert.calledWith(response.send, 404);
+				done();
+			});
+		});
+		
+	});
+	
 });
