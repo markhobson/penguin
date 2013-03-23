@@ -21,7 +21,7 @@ module.exports = function(data) {
 		});
 	};
 
-	this.create = function(request, response) {
+	this.create = function(request, response, done) {
 				
 		var queue = {
 			name: request.body.name,
@@ -30,6 +30,7 @@ module.exports = function(data) {
 
 		data.createQueue(queue, function(queue) {
 			response.send(201, {_id: queue._id});
+			done && done();
 		});
 	};
 			

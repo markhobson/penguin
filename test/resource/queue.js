@@ -58,4 +58,21 @@ suite("Queue", function() {
 		
 	});
 	
+	suite("#create()", function() {
+		
+		test("creates queue from request", function(done) {
+			
+			data.createQueue = sinon.stub();
+			data.createQueue.withArgs({name: "A", stories: []}).callsArgWith(1, {_id: 1, name: "A", stories: []});
+			request.body = {name: "A"};
+
+			queue.create(request, response, function() {
+				sinon.assert.calledWith(data.createQueue, {name: "A", stories: []});
+				sinon.assert.calledWith(response.send, 201, {_id: 1});
+				done();
+			});
+		});
+		
+	});
+	
 });
