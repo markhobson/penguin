@@ -70,13 +70,14 @@ module.exports = function(data) {
 		});
 	};
 			
-	this.unmerge = function(request, response) {
+	this.unmerge = function(request, response, done) {
 				
 		var queueId = request.params.queueId;
 		var id = request.params.id;
 		
 		data.unmergeStory(queueId, id, function(success) {
 			response.send(success ? 204 : 404);
+			done && done();
 		});
 	};
 };

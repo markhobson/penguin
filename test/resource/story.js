@@ -198,4 +198,44 @@ suite("Story", function() {
 		
 	});
 	
+	suite("#unmerge()", function() {
+		
+		test("unmerges story when found", function(done) {
+			
+			data.unmergeStory = sinon.stub();
+			data.unmergeStory.withArgs(1, 2).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			
+			story.unmerge(request, response, function() {
+				sinon.assert.calledOnce(data.unmergeStory);
+				done();
+			});
+		});
+		
+		test("sends 204 when unmerged", function(done) {
+			
+			data.unmergeStory = sinon.stub();
+			data.unmergeStory.withArgs(1, 2).callsArgWith(2, true);
+			request.params = {queueId: 1, id: 2};
+			
+			story.unmerge(request, response, function() {
+				sinon.assert.calledWith(response.send, 204);
+				done();
+			});
+		});
+		
+		test("sends 404 when not found", function(done) {
+			
+			data.unmergeStory = sinon.stub();
+			data.unmergeStory.withArgs(1, 2).callsArgWith(2, false);
+			request.params = {queueId: 1, id: 2};
+			
+			story.unmerge(request, response, function() {
+				sinon.assert.calledWith(response.send, 404);
+				done();
+			});
+		});
+		
+	});
+	
 });
