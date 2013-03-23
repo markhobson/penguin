@@ -54,7 +54,7 @@ suite("Story", function() {
 			request.body = {reference: "A", title: "B", author: "C"};
 			
 			story.create(request, response, function() {
-				sinon.assert.calledWith(data.createStory, 1, {reference: "A", title: "B", author: "C", merged: false});
+				sinon.assert.calledOnce(data.createStory);
 				done();
 			});
 		});
