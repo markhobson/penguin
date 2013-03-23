@@ -20,10 +20,10 @@ suite("Queue", function() {
 		
 		test("sends queues to response", function(done) {
 			
-			data.findQueues = sinon.stub().callsArgWith(0, [{_id: "1", name: "A", stories: []}]);
+			data.findQueues = sinon.stub().callsArgWith(0, [{_id: 1, name: "A", stories: []}]);
 			
 			queue.list(request, response, function() {
-				sinon.assert.calledWith(response.send, [{_id: "1", name: "A", stories: []}]);
+				sinon.assert.calledWith(response.send, [{_id: 1, name: "A", stories: []}]);
 				done();
 			});
 		});
