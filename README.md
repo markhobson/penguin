@@ -46,4 +46,4 @@ The server is a [Restify](http://mcavage.github.com/node-restify/) application r
 It provides a RESTful interface to a [MongoDB](http://www.mongodb.org/) data persistence layer via the
 [MongoDB Node.js driver](http://mongodb.github.com/node-mongodb-native/).
 
-Unit tests use [Mocha](http://visionmedia.github.com/mocha/) with [Sinon.JS](http://sinonjs.org/) for mocking.
+Unit tests use [Mocha](http://mochajs.org/) with [Sinon.JS](http://sinonjs.org/) for mocking.
